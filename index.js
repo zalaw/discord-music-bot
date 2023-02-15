@@ -76,7 +76,7 @@ client.on("messageCreate", async message => {
       queue.push({ url, userVoiceChannel, message });
 
       if (queue.length === 1) {
-        play(queue[0]);
+        await play(queue[0]);
         await message.channel.send(`Now playing ${args.join(" ")}`);
       } else {
         await message.channel.send(`Added ${args.join(" ")} to the queue!`);
@@ -84,7 +84,7 @@ client.on("messageCreate", async message => {
     } else if (content.startsWith("!skip")) {
       if (queue.length === 0) return;
 
-      skip();
+      await skip();
     } else if (content.startsWith("!stop")) {
       if (botVoiceChannelId && botVoiceChannelId !== userVoiceChannel.id) return;
 
